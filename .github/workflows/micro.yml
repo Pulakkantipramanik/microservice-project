@@ -21,10 +21,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build with Maven
-        run: mvn -B clean verify
-
-      - name: SonarQube Code Analysis
+       - name: SonarQube Code Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -32,5 +29,5 @@ jobs:
           mvn sonar:sonar \
             -Dsonar.projectKey=microservice-project \
             -Dsonar.projectName=microservice-project \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            "-Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}" \
+            "-Dsonar.login=${{ secrets.SONAR_TOKEN }}"
